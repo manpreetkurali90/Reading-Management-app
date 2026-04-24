@@ -87,9 +87,53 @@
     </section>
 
 
-   
+    <!-- Book Detail Modal with Notes Section -->
+    <div class="modal fade" id="bookDetailModal" tabindex="-1" aria-labelledby="bookDetailLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookDetailLabel">Book Details & Notes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Book Information -->
+                    <div id="bookInfo" class="mb-4">
+                        <h6 id="detailTitle" class="fw-bold"></h6>
+                        <p id="detailAuthor" class="text-muted mb-2"></p>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <small><strong>Genre:</strong> <span id="detailGenre"></span></small><br>
+                                <small><strong>Published:</strong> <span id="detailDate"></span></small>
+                            </div>
+                            <div class="col-md-6">
+                                <small><strong>Pages:</strong> <span id="detailPages"></span></small><br>
+                                <small><strong>Progress:</strong> <span id="detailProgress"></span></small>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
 
-
+                    <!-- Notes Section -->
+                    <div class="notes-section">
+                        <h6 class="mb-3">📝 Notes for This Book</h6>
+                        <div class="mb-3">
+                            <textarea id="notesInput" class="form-control" rows="6" placeholder="Add your personal notes, thoughts, and highlights here..."></textarea>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap mb-3">
+                            <button type="button" class="btn btn-sm btn-success" id="saveNotesBtn">Save Notes</button>
+                            <button type="button" class="btn btn-sm btn-info" id="exportTextBtn">Export as TXT</button>
+                            <button type="button" class="btn btn-sm btn-warning" id="exportPdfBtn">Export as PDF</button>
+                            <button type="button" class="btn btn-sm btn-secondary" id="clearNotesBtn">Clear Notes</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="deleteBookBtn">Delete Book</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     
     
@@ -97,6 +141,14 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
     <script src="./js/main.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+    <!-- jsPDF library for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- jsPDF for basic PDF creation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="./js/notes-manager.js"></script>
     <script src="./js/addnewbook.js"></script>
     <script src="./js/main.js"></script>
     </body>
