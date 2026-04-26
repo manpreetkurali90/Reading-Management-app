@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reading Records | Azaad Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="container-xl py-4">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+                <a href="index.html" class="brand-link">
+                    <span class="brand-icon">📖</span>
+                    <span class="brand-name">Azaad</span>
+                </a>
+                <nav class="nav-links d-none d-md-flex align-items-center gap-4">
+                    <a href="index.html" class="nav-item">Home</a>
+                    <a href="allbooks.html" class="nav-item">My Books</a>
+                    <a href="readingrecord.html" class="nav-item active">Progress</a>
+                    <a href="addnewbook.html" class="nav-item">Notes</a>
+                    <a href="stats.html" class="nav-item">Stats</a>
+                </nav>
+                <div class="search-shell ms-auto ms-md-0">
+                    <input id="search-input" class="search-input" type="search" placeholder="Search books, notes...">
+                    <span class="search-icon">🔍</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="page-shell">
+
+    <section class="page-section reading-records py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2>Your Reading Progress</h2>
+                    <p class="mt-2 mb-2">Log your daily reading and watch your streak grow. Set a page goal, track pages read, and never lose momentum. Every page gets you closer to your next finished book.</p>
+                    <p><a href="allbooks.html">Back to all books</a></p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card p-4 shadow-sm">
+                        <h3>Daily Reading Goal</h3>
+                        <div class="mb-3">
+                            <label for="dailyGoalInput" class="form-label">Pages per day</label>
+                            <input type="number" class="form-control" id="dailyGoalInput" min="1"
+                                placeholder="Enter daily goal">
+                        </div>
+                        <button id="saveGoalBtn" class="btn btn-primary">Save goal</button>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card p-4 shadow-sm">
+                        <h3>Reading Check-In</h3>
+                        <div class="mb-3">
+                            <label for="pagesReadInput" class="form-label">Pages read today</label>
+                            <input type="number" class="form-control" id="pagesReadInput" min="1"
+                                placeholder="Enter pages read">
+                        </div>
+                        <button id="checkInBtn" class="btn btn-success">Logged today's reading</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card p-4 shadow-sm">
+                        <h3>Streak</h3>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <p class="mb-1 text-muted">Current streak</p>
+                                <h1 id="streakCount" class="display-6">🔥 0 days</h1>
+                            </div>
+                            <div>
+                                <span class="fs-5 text-success">Keep it going!</span>
+                            </div>
+                        </div>
+                        <p id="streakMessage" class="mt-3 text-muted">Log today&apos;s reading to start your streak.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-4 shadow-sm">
+                        <h3 class="mb-2">Today</h3>
+                        <p class="mb-2"><strong>Daily goal:</strong> <span id="goalDisplay">Not set</span></p>
+                        <p class="mb-2"><strong>Last check-in:</strong> <span id="lastLogDisplay">Never</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <script src="./js/notes-manager.js"></script>
+    <script>
+        const STORAGE_KEYS = {
+            goal: 'readingDailyGoal',
+            streak: 'readingStreakCount',
+            lastLog: 'readingLastLogDate'
+        };
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        function isSameDay(dateA, dateB) {
+            return dateA.getFullYear() === dateB.getFullYear() &&
+                dateA.getMonth() === dateB.getMonth() &&
+                dateA.getDate() === dateB.getDate();
+        }
+
+        function loadRecord() {
+            const goalValue = localStorage.getItem(STORAGE_KEYS.goal);
+            const streakValue = parseInt(localStorage.getItem(STORAGE_KEYS.streak), 10) || 0;
+            const lastLogValue = localStorage.getItem(STORAGE_KEYS.lastLog);
+
+            document.getElementById('dailyGoalInput').value = goalValue || '';
+            document.getElementById('goalDisplay').textContent = goalValue ? `${goalValue} pages` : 'Not set';
+            document.getElementById('streakCount').textContent = `🔥 ${streakValue} day${streakValue === 1 ? '' : 's'}`;
+            document.getElementById('lastLogDisplay').textContent = lastLogValue ? formatDate(lastLogValue) : 'Never';
+
+            const streakMessage = document.getElementById('streakMessage');
+            if (streakValue === 0) {
+                streakMessage.textContent = 'Log today\'s reading to start your streak.';
+            } else if (lastLogValue) {
+                const lastLogDate = new Date(lastLogValue);
+                if (isSameDay(lastLogDate, new Date())) {
+                    streakMessage.textContent = 'You have logged reading today. Keep your streak alive tomorrow!';
+                } else {
+                    streakMessage.textContent = 'Come back and log today to keep your streak going.';
+                }
+            }
+        }
+
+        function saveGoal() {
+            const goalInput = document.getElementById('dailyGoalInput');
+            const goal = parseInt(goalInput.value, 10);
+            if (!goal || goal <= 0) {
+                alert('Please enter a valid daily goal greater than zero.');
+                return;
+            }
+            localStorage.setItem(STORAGE_KEYS.goal, goal);
+            document.getElementById('goalDisplay').textContent = `${goal} pages`;
+            alert('Daily reading goal saved.');
+        }
+
+        function handleCheckIn() {
+            const pagesRead = parseInt(document.getElementById('pagesReadInput').value, 10);
+            if (!pagesRead || pagesRead <= 0) {
+                alert('Please enter the number of pages you read today.');
+                return;
+            }
+
+            const today = new Date();
+            const lastLogValue = localStorage.getItem(STORAGE_KEYS.lastLog);
+            const streakValue = parseInt(localStorage.getItem(STORAGE_KEYS.streak), 10) || 0;
+            let newStreak = 1;
+
+            if (lastLogValue) {
+                const lastLogDate = new Date(lastLogValue);
+                const yesterday = new Date(today);
+                yesterday.setDate(today.getDate() - 1);
+
+                if (isSameDay(lastLogDate, today)) {
+                    alert('You already logged reading today.');
+                    return;
+                }
+
+                if (isSameDay(lastLogDate, yesterday)) {
+                    newStreak = streakValue + 1;
+                }
+            }
+
+            localStorage.setItem(STORAGE_KEYS.streak, newStreak);
+            localStorage.setItem(STORAGE_KEYS.lastLog, today.toISOString());
+            document.getElementById('pagesReadInput').value = '';
+
+            loadRecord();
+            alert(`Great job! Your streak is now ${newStreak} day${newStreak === 1 ? '' : 's'}.`);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('saveGoalBtn').addEventListener('click', saveGoal);
+            document.getElementById('checkInBtn').addEventListener('click', handleCheckIn);
+            loadRecord();
+        });
+    </script>
+</body>
+
+</html>
+</content>
+<!-- <parameter name="filePath">d:\AZAAD-NEW-LIFE\MYWEBDEVPROJECTS\Frontend-Projects\MyLibrary-main\Reading-Management-app(25-April)\readingrecord.html</parameter> -->
