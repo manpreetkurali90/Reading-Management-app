@@ -38,6 +38,15 @@ textarea {
     border-bottom: 1px solid rgba(15,23,42,0.08);
 }
 
+.page-header {
+    background: rgba(255,255,255,0.94);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(15,23,42,0.08);
+}
+
 .brand-link {
     display: inline-flex;
     align-items: center;
@@ -313,6 +322,91 @@ textarea {
     }
     .panel-card {
         max-width: 100%;
+    }
+}
+
+.page-shell {
+    padding: 3.5rem 0 4rem;
+}
+
+.page-section {
+    margin: 0 auto 2rem;
+    padding: 2rem;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid rgba(15,23,42,0.06);
+    box-shadow: 0 24px 80px rgba(15,23,42,0.06);
+}
+
+.stats-card {
+    min-height: 150px;
+}
+
+.stats-chart-wrapper {
+    border: 1px solid rgba(15,23,42,0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    background: #ffffff;
+    min-height: 260px;
+}
+
+.stats-chart-column {
+    flex: 1 1 0;
+    margin: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.stats-chart-bar {
+    width: 100%;
+    min-height: 20px;
+    border-radius: 16px 16px 0 0;
+    background: linear-gradient(180deg, #38bdf8 0%, #6366f1 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    padding: 0.75rem 0.5rem 0.5rem;
+}
+
+.stats-chart-label {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #334155;
+}
+
+.page-heading h1 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    color: #0f172a;
+    margin-bottom: 0.9rem;
+}
+
+.section-description {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.breadcrumb {
+    background: rgba(255,255,255,0.92);
+    border-radius: 12px;
+    border: 1px solid rgba(15,23,42,0.08);
+    padding: 0.85rem 1rem;
+}
+
+.breadcrumb a {
+    color: #0f172a;
+}
+
+@media (max-width: 767.98px) {
+    .page-shell {
+        padding: 2rem 0 2.5rem;
     }
 }
 

@@ -13,33 +13,30 @@
 
 <body>
 
-    <header>
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <div class="azaad-logo">
-                        <a href="index.html">
-                            <h1>Azaad </h1>
-                        </a>
-                    </div>
-                    <nav>
-                        <a href="/">Home</a> |
-                        <a href="/allbooks.html">All Books</a> |
-                        <a href="/readingrecord.html">Reading Record</a> |
-                        <a href="/stats.html">Stats</a>
-                    </nav>
-                    <form class="d-flex" role="search">
-                        <label for="search-input" class="visually-hidden">Search</label>
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit" aria-label="Search">Search</button>
-                    </form>
+    <header class="page-header">
+        <div class="container-xl py-4">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+                <a href="index.html" class="brand-link">
+                    <span class="brand-icon">📖</span>
+                    <span class="brand-name">Azaad</span>
+                </a>
+                <nav class="nav-links d-none d-md-flex align-items-center gap-4">
+                    <a href="index.html" class="nav-item">Home</a>
+                    <a href="allbooks.html" class="nav-item">My Books</a>
+                    <a href="readingrecord.html" class="nav-item active">Progress</a>
+                    <a href="addnewbook.html" class="nav-item">Notes</a>
+                    <a href="stats.html" class="nav-item">Stats</a>
+                </nav>
+                <div class="search-shell ms-auto ms-md-0">
+                    <input id="search-input" class="search-input" type="search" placeholder="Search books, notes...">
+                    <span class="search-icon">🔍</span>
                 </div>
-            </nav>
+            </div>
         </div>
-
     </header>
+    <main class="page-shell">
 
-    <section class="reading-records py-5">
+    <section class="page-section reading-records py-5">
         <div class="container">
             <div class="row mb-4">
                 <div class="col-12">
@@ -100,8 +97,7 @@
             </div>
         </div>
     </section>
-
-
+    </main>
 
     <script src="./js/notes-manager.js"></script>
     <script>

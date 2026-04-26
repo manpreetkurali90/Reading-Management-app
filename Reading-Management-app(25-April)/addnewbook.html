@@ -14,30 +14,30 @@
 
     <!-- HTML -->
 
-    <header>
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <div class="azaad-logo">
-                        <a href="index.html"><h1>Azaad </h1></a>
-                    </div>
-                    <nav>
-                        <a href="/">Home</a> |
-                        <a href="/allbooks.html">All Books</a> |
-                        <a href="/readingrecord.html">Reading Record</a> |
-                        <a href="/stats.html">Stats</a>
-                    </nav>
-                    <form class="d-flex" role="search">
-                        <label for="search-input" class="visually-hidden">Search</label>
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit" aria-label="Search">Search</button>
-                    </form>
+    <header class="page-header">
+        <div class="container-xl py-4">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+                <a href="index.html" class="brand-link">
+                    <span class="brand-icon">📖</span>
+                    <span class="brand-name">Azaad</span>
+                </a>
+                <nav class="nav-links d-none d-md-flex align-items-center gap-4">
+                    <a href="index.html" class="nav-item">Home</a>
+                    <a href="allbooks.html" class="nav-item">My Books</a>
+                    <a href="readingrecord.html" class="nav-item">Progress</a>
+                    <a href="addnewbook.html" class="nav-item active">Notes</a>
+                    <a href="stats.html" class="nav-item">Stats</a>
+                </nav>
+                <div class="search-shell ms-auto ms-md-0">
+                    <input id="search-input" class="search-input" type="search" placeholder="Search books, notes...">
+                    <span class="search-icon">🔍</span>
                 </div>
-            </nav>
+            </div>
         </div>
     </header>
+    <main class="page-shell">
 
-    <section class="input-section">
+    <section class="page-section input-section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6">
@@ -83,15 +83,20 @@
         </div>
     </section>
 
-    <section class="book-list-section">
+    <section class="page-section book-list-section">
         <div class="container-fluid">
-            <h2>Your Books</h2>
+            <div class="page-heading">
+                <h1>Your Books</h1>
+                <p class="section-description">Manage and update your collection, view reading progress, and open notes for each title.</p>
+            </div>
             <div class="row" id="book-list">
                 <!-- Books will be dynamically added here -->
             </div>
         </div>
     </section>
 
+
+    </main>
 
     <!-- Book Detail Modal with Notes Section -->
     <div class="modal fade" id="bookDetailModal" tabindex="-1" aria-labelledby="bookDetailLabel" aria-hidden="true">
