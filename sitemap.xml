@@ -8,19 +8,29 @@
 
 
 <url>
-  <loc>https://azaad-library.netlify.app/</loc>
-  <lastmod>2026-04-22T12:31:06+00:00</lastmod>
+  <loc>https://personal-library-manager.raftaartimeon-2018.workers.dev/</loc>
+  <lastmod>2026-04-27T00:28:31+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://azaad-library.netlify.app/addnewbook</loc>
-  <lastmod>2026-04-22T12:31:06+00:00</lastmod>
+  <loc>https://personal-library-manager.raftaartimeon-2018.workers.dev/allbooks</loc>
+  <lastmod>2026-04-27T00:28:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://azaad-library.netlify.app/allbooks</loc>
-  <lastmod>2026-04-22T12:31:06+00:00</lastmod>
+  <loc>https://personal-library-manager.raftaartimeon-2018.workers.dev/readingrecord</loc>
+  <lastmod>2026-04-27T00:28:31+00:00</lastmod>
   <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://personal-library-manager.raftaartimeon-2018.workers.dev/addnewbook</loc>
+  <lastmod>2026-04-27T00:28:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://personal-library-manager.raftaartimeon-2018.workers.dev/stats</loc>
+  <lastmod>2026-04-27T00:28:31+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 
 
